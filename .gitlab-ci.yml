@@ -1,5 +1,6 @@
 stages:
   - test
+  - build
 
 test_python:
   stage: test
@@ -7,3 +8,15 @@ test_python:
   script:
     - pip install -r requirements.txt
     - pytest
+
+build_docker:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_TLS_CERTDIR: ""
+  script:
+    - docker info
+    - docker build -t mon-app .
