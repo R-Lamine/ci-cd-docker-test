@@ -1,4 +1,4 @@
- name: CI + Build + Push Docker (versioned)
+name: CI + Build + Push Docker (versioned)
 
 on:
   push:
